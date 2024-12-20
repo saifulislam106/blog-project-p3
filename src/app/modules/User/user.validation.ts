@@ -14,7 +14,7 @@ export const createUserValidationSchema = z.object({
     email: z.string().email(),
     password: z.string(),
     gender: z.enum(['user', 'admin']),
-    isBlocked: z.boolean(),
+    isBlocked: z.boolean().optional(),
   }),
 });
 
