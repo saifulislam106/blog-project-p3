@@ -5,7 +5,7 @@ import { User } from "./user.model"
 const createUserIntoDB = async(payload:TUser)=>{
     
     const result = await User.create(payload)
-    console.log(payload);
+    // console.log(payload);
     return result
 }
 

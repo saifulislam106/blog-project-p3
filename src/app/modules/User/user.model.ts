@@ -1,7 +1,10 @@
+/* eslint-disable @typescript-eslint/no-this-alias */
 
 
 import { model, Schema } from 'mongoose';
 import { TName, TUser } from './user.interface';
+import config from '../../config';
+import bcrypt from 'bcrypt';
 
 export const userNameSchema = new Schema<TName>({
   firstName: {
@@ -40,6 +43,7 @@ export const userSchema = new Schema<TUser>({
   password:{
     type:String,
     required: [true, 'Email is required'],
+    select:0
   },
   role:{
     type : String,
@@ -54,5 +58,21 @@ export const userSchema = new Schema<TUser>({
     timestamps:true
 }
 );
+
+userSchema.pre('save', async function (next) {
+  const user = this; 
+  // hashing password and save into DB
+  user.password = await bcrypt.hash(
+    user.password,
+    Number(config.bcrypt_salt_rounds),
+  );
+  next();
+});
+
+// set '' after saving password
+userSchema.post('save', function (doc, next) {
+  doc.password = '';
+  next();
+});
 
 export const User = model<TUser>("User" , userSchema)
