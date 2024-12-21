@@ -2,30 +2,30 @@
 
 
 import { model, Schema } from 'mongoose';
-import { TName, TUser } from './user.interface';
+import { TUser } from './user.interface';
 import config from '../../config';
 import bcrypt from 'bcrypt';
 
-export const userNameSchema = new Schema<TName>({
-  firstName: {
-    type: String,
-    required: [true, 'First Name is required'],
-    trim: true,
-  },
-  middleName: {
-    type: String,
-    trim: true,
-  },
-  lastName: {
-    type: String,
-    required: [true, 'Last Name is required'],
-    trim: true,
-  },
-});
+// export const userNameSchema = new Schema<TName>({
+//   firstName: {
+//     type: String,
+//     required: [true, 'First Name is required'],
+//     trim: true,
+//   },
+//   middleName: {
+//     type: String,
+//     trim: true,
+//   },
+//   lastName: {
+//     type: String,
+//     required: [true, 'Last Name is required'],
+//     trim: true,
+//   },
+// });
 
 export const userSchema = new Schema<TUser>({
   name: {
-    type: userNameSchema,
+    type: String,
     required: [true, 'Name is required'],
   },
   email: {

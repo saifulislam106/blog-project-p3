@@ -1,13 +1,13 @@
 import { user_role } from "./user.constants";
 
-export type TName ={
-    firstName :string;
-    middleName? :string;
-    lastName :string;
-}
+// export type TName ={
+//     firstName :string;
+//     middleName? :string;
+//     lastName :string;
+// }
 
 export type TUser ={
-    name:TName;
+    name:string;
     email:string;
     password:string;
     role: "admin" | "user";

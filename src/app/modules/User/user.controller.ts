@@ -15,6 +15,17 @@ const createUser = catchAsync(async (req, res) => {
   });
 });
 
+const getUser = catchAsync(async (req, res) => {
+  const result = await UserServices.getUserFromDB();
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'User retrived successfully',
+    data: result,
+  });
+});
+
 export const UserControllers = {
   createUser,
+  getUser
 };
